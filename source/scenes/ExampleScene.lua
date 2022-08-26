@@ -13,12 +13,14 @@ local difficultyValues = {"Rare", "Medium", "Well Done"}
 function ExampleScene:init()
 	ExampleScene.super.init(self)
 
-	background = Graphics.image.new("assets/images/background1")
+
+	background = Graphics.image.new("assets/images/title")
 	logo = Graphics.image.new("libraries/noble/assets/images/NobleRobotLogo")
+
 
 	menu = Noble.Menu.new(false, Noble.Text.ALIGN_LEFT, false, Graphics.kColorWhite, 4,6,0, Noble.Text.FONT_SMALL)
 
-	menu:addItem(Noble.TransitionType.DIP_TO_BLACK, function() Noble.transition(ExampleScene2, 1, Noble.TransitionType.DIP_TO_BLACK) end)
+	menu:addItem(Noble.TransitionType.DIP_TO_BLACK, function() Noble.transition(OneHundredMetres, 1, Noble.TransitionType.DIP_TO_BLACK) end)
 	menu:addItem(Noble.TransitionType.DIP_TO_WHITE, function() Noble.transition(ExampleScene2, 1, Noble.TransitionType.DIP_TO_WHITE) end)
 	menu:addItem(Noble.TransitionType.DIP_METRO_NEXUS, function() Noble.transition(ExampleScene2, 1, Noble.TransitionType.DIP_METRO_NEXUS) end)
 	menu:addItem(Noble.TransitionType.DIP_WIDGET_SATCHEL, function() Noble.transition(ExampleScene2, 1, Noble.TransitionType.DIP_WIDGET_SATCHEL) end)
