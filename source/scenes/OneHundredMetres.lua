@@ -5,36 +5,43 @@ OneHundredMetres.baseColor = Graphics.kColorWhite
 
 local background
 local sequence
+local dicehand
 
 function OneHundredMetres:init()
 	OneHundredMetres.super.init(self)
 	background = Graphics.image.new("assets/images/track")
 
+  dicehand = DiceHand(10, 202, 4, true, false, false)
+
 	local crankTick = 0
 
 	OneHundredMetres.inputHandler = {
-		-- upButtonDown = function()
-		-- 	menu:selectPrevious()
-		-- end,
-		-- downButtonDown = function()
-		-- 	menu:selectNext()
+		upButtonDown = function()
+			dicehand:showTheDice()
+		end,
+		downButtonDown = function()
+			dicehand:hideTheDice()
+		end,
+		-- rightButtonDown = function()
+		-- 	dicesprites[1]:setBad(true, false, false)
 		-- end,
 		cranked = function(change, acceleratedChange)
 			crankTick = crankTick + change
 			if (crankTick > 30) then
 				crankTick = 0
-        dicesprites[1]:moveTo(300,200)
+        dicehand:rollTheDice()
 				-- menu:selectNext()
 			elseif (crankTick < -30) then
 				crankTick = 0
-
-        dicesprites[1]:moveTo(-100,200)
 				-- menu:selectPrevious()
 			end
 		end,
 		AButtonDown = function()
-			Noble.transition(ExampleScene, 1, Noble.TransitionType.DIP_TO_WHITE)
-		end
+			Noble.transition(TitleScene, 1, Noble.TransitionType.DIP_TO_WHITE)
+		end,
+		-- BButtonDown = function()
+		-- 	dicesprites[1]:rollDice()
+		-- end
 	}
 
 end
@@ -51,9 +58,7 @@ function OneHundredMetres:start()
 
 	Noble.Input.setCrankIndicatorStatus(true)
 
-  for i = 1,8 do
-    self:addSprite(dicesprites[i])
-  end
+  dicehand:addToScene(self)
 end
 
 function OneHundredMetres:drawBackground()
@@ -79,7 +84,5 @@ end
 function OneHundredMetres:finish()
 	OneHundredMetres.super.finish(self)
 
-  for i = 1,8 do
-  	self:removeSprite(dicesprites[i])
-  end
+  dicehand:removeFromScene(self)
 end

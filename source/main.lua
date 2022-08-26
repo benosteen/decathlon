@@ -2,11 +2,11 @@ import 'libraries/noble/Noble'
 
 import 'utilities/Utilities'
 
-import 'scenes/ExampleScene'
-import 'scenes/ExampleScene2'
+import 'scenes/TitleScene'
 import 'scenes/OneHundredMetres'
 
 import 'diceobjs/Dice'
+import 'diceobjs/DiceHand'
 
 Noble.Settings.setup({
 	Difficulty = "Medium"
@@ -24,4 +24,4 @@ for i = 1,8 do
 	dicesprites[i] = Dice(-100, 0, 1)
 end
 
-Noble.new(ExampleScene, 1.5, Noble.TransitionType.CROSS_DISSOLVE)
+Noble.new(TitleScene, 1.5, Noble.TransitionType.CROSS_DISSOLVE)
